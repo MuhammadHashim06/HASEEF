@@ -1,0 +1,108 @@
+/* .card {
+  background: #00110b;
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 2px 16px rgba(0, 17, 11, 0.4);
+  margin: 12px;
+  flex: 1 1 calc(50% - 48px);
+  min-width: 280px;
+  max-width: calc(50% - 48px);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+  color: #fff;
+}
+
+.headRow {
+  color: #8fffa0;
+  text-align: left;
+}
+
+.row {
+  border-bottom: 1px solid #233;
+}
+
+.row td {
+  padding: 8px 0;
+}
+
+.button {
+  background: #1a3d2f;
+  color: #8fffa0;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+} */
+
+
+.card {
+  background: #00110b;
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 2px 16px rgba(0, 17, 11, 0.4);
+  margin: 12px;
+  flex: 1 1 calc(50% - 48px);
+  min-width: 280px;
+  max-width: calc(50% - 48px);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.table {
+  width: 100%;
+  color: #fff;
+  border-spacing: 0;
+}
+
+.headRow {
+  color: #8fffa0;
+  text-align: left;
+}
+
+.row {
+  border-bottom: 1px solid #233;
+}
+
+.button {
+  background: #1a3d2f;
+  color: #8fffa0;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadLabel {
+  background-color: #1a3d2f;
+  color: #8fffa0;
+  padding: 6px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+}

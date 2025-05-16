@@ -1,0 +1,56 @@
+.card {
+  background: #00110b;
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 2px 16px rgba(0, 17, 11, 0.4);
+  margin: 12px;
+  flex: 1 1 calc(50% - 48px);
+  min-width: 280px;
+  max-width: calc(50% - 48px);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.chartContainer {
+  width: 140px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.chartCenter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #8fffa0;
+  font-weight: 700;
+  font-size: 28px;
+  pointer-events: none;
+}
+
+.status {
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.button {
+  margin-top: 18px;
+  background: #1a3d2f;
+  color: #8fffa0;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-weight: 600;
+  cursor: pointer;
+}
