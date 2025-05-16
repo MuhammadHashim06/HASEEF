@@ -63,9 +63,117 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from "react";
+// import styles from "./AlertHistoryCard.module.css";
+// import axios from "axios";
+
+// export default function AlertHistoryCard() {
+//   const [uploadStates, setUploadStates] = useState([
+//     { loading: false, success: false },
+//     { loading: false, success: false },
+//     { loading: false, success: false },
+//   ]);
+
+//   const handleFileUpload = async (event, index) => {
+//     const file = event.target.files[0];
+//     if (!file) return;
+
+//     const newStates = [...uploadStates];
+//     newStates[index] = { loading: true, success: false };
+//     setUploadStates(newStates);
+
+//     const formData = new FormData();
+//     formData.append("file", file);
+
+//     try {
+//       await axios.post("/api/upload", formData, {
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//         },
+//       });
+
+//       newStates[index] = { loading: false, success: true };
+//       setUploadStates(newStates);
+//     } catch (err) {
+//       console.error("Upload failed", err);
+//       newStates[index] = { loading: false, success: false };
+//       setUploadStates(newStates);
+//     }
+//   };
+
+//   const rows = [
+//     { time: "03:24 AM", source: "Email Gateway", risk: "Phishing" },
+//     { time: "08:19 AM", source: "Firewall", risk: "Intrusion" },
+//     { time: "07:31 AM", source: "Endpoint", risk: "Ransomware" },
+//   ];
+
+//   return (
+//     <div className={styles.card}>
+//       <div className={styles.title}>Alert History</div>
+//       <table className={styles.table}>
+//         <thead>
+//           <tr className={styles.headRow}>
+//             <th>Time</th>
+//             <th>Alert Source</th>
+//             <th></th>
+//             <th>Risk</th>
+//             <th>Upload</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {rows.map((row, index) => (
+//             <tr key={index} className={styles.row}>
+//               <td>{row.time}</td>
+//               <td>{row.source}</td>
+//               <td>{row.risk}</td>
+//               <td>
+//                 {uploadStates[index].success ? (
+//                   <button className={styles.button}>Mitigate</button>
+//                 ) : (
+//                   <span style={{ color: "#888" }}>Pending Upload</span>
+//                 )}
+//               </td>
+//               <td>
+//                 <label htmlFor={`fileInput${index}`} className={styles.uploadLabel}>
+//                   {uploadStates[index].loading
+//                     ? "Uploading..."
+//                     : uploadStates[index].success
+//                     ? "Uploaded ✓"
+//                     : "Upload File"}
+//                 </label>
+//                 <input
+//                   id={`fileInput${index}`}
+//                   type="file"
+//                   className={styles.fileInput}
+//                   onChange={(e) => handleFileUpload(e, index)}
+//                 />
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+
+
+
 import React, { useState } from "react";
+import Modal from "react-modal";
 import styles from "./AlertHistoryCard.module.css";
 import axios from "axios";
+
+Modal.setAppElement("#root");
 
 export default function AlertHistoryCard() {
   const [uploadStates, setUploadStates] = useState([
@@ -73,6 +181,15 @@ export default function AlertHistoryCard() {
     { loading: false, success: false },
     { loading: false, success: false },
   ]);
+
+  const [modalOpenIndex, setModalOpenIndex] = useState(null);
+  const [selectedActions, setSelectedActions] = useState({});
+
+  const rows = [
+    { time: "03:24 AM", source: "Email Gateway", risk: "Phishing" },
+    { time: "08:19 AM", source: "Firewall", risk: "Intrusion" },
+    { time: "07:31 AM", source: "Endpoint", risk: "Ransomware" },
+  ];
 
   const handleFileUpload = async (event, index) => {
     const file = event.target.files[0];
@@ -86,26 +203,29 @@ export default function AlertHistoryCard() {
     formData.append("file", file);
 
     try {
-      await axios.post("/api/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
+      await axios.post("/api/upload", formData);
       newStates[index] = { loading: false, success: true };
       setUploadStates(newStates);
     } catch (err) {
-      console.error("Upload failed", err);
       newStates[index] = { loading: false, success: false };
       setUploadStates(newStates);
     }
   };
 
-  const rows = [
-    { time: "03:24 AM", source: "Email Gateway", risk: "Phishing" },
-    { time: "08:19 AM", source: "Firewall", risk: "Intrusion" },
-    { time: "07:31 AM", source: "Endpoint", risk: "Ransomware" },
-  ];
+  const checkBoxOptions = ["Notify Admin", "Isolate Endpoint", "Block IP", "Create Report"];
+
+  const handleCheckboxChange = (index, option) => {
+    const current = selectedActions[index] || [];
+    const updated = current.includes(option)
+      ? current.filter((o) => o !== option)
+      : [...current, option];
+    setSelectedActions({ ...selectedActions, [index]: updated });
+  };
+
+  const saveMitigation = (index) => {
+    console.log("Mitigation options for row", index, ":", selectedActions[index]);
+    setModalOpenIndex(null);
+  };
 
   return (
     <div className={styles.card}>
@@ -128,7 +248,12 @@ export default function AlertHistoryCard() {
               <td>{row.risk}</td>
               <td>
                 {uploadStates[index].success ? (
-                  <button className={styles.button}>Mitigate</button>
+                  <button
+                    className={styles.button}
+                    onClick={() => setModalOpenIndex(index)}
+                  >
+                    Mitigate
+                  </button>
                 ) : (
                   <span style={{ color: "#888" }}>Pending Upload</span>
                 )}
@@ -152,6 +277,31 @@ export default function AlertHistoryCard() {
           ))}
         </tbody>
       </table>
+
+      {/* Modal */}
+      <Modal
+        isOpen={modalOpenIndex !== null}
+        onRequestClose={() => setModalOpenIndex(null)}
+        className={styles.modal}
+        overlayClassName={styles.overlay}
+      >
+        <h2>Mitigation Actions</h2>
+        {checkBoxOptions.map((opt) => (
+          <label key={opt} className={styles.checkboxLabel}>
+            <input
+              type="checkbox"
+              checked={selectedActions[modalOpenIndex]?.includes(opt) || false}
+              onChange={() => handleCheckboxChange(modalOpenIndex, opt)}
+            />
+            {opt}
+          </label>
+        ))}
+        <div style={{ marginTop: "20px" }}>
+          <button className={styles.button} onClick={() => saveMitigation(modalOpenIndex)}>
+            Save
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }
