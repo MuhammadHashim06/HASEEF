@@ -1,4 +1,4 @@
-.Dashboard{
+/* .Dashboard{
      background: #010302;
       min-height: 100vh;
       width: 100%;
@@ -32,4 +32,44 @@
           justify-content: space-between;
           padding: 32px;
       }
+} */
+
+.DashboardMain {
+  flex: 1;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000d08;
+  overflow-x: hidden;
 }
+
+/* Sticky top header section */
+.Dasboardcoss {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 16px 0 16px;
+  background: #00110b;
+  border-bottom: 1px solid #01100b;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.Dashnav {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.DashGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 32px;
+  justify-content: space-between;
+  padding: 32px;
+  box-sizing: border-box;
+  width: 100%;
+}
+

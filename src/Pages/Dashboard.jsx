@@ -300,7 +300,6 @@
 //     </div>
 //   );
 // }
-
 import AlertSeverityCard from "../components/AlertSeverityCard";
 import AlertHistoryCard from "../components/AlertHistoryCard";
 import RiskScoreCard from "../components/RiskScoreCard";
@@ -309,8 +308,7 @@ import "./Dashboard.css";
 
 export default function Dashboard() {
   return (
-    <div className="Dashboard">
-
+    <div className="DashboardMain">
       <div className="Dasboardcoss">
         <div className="Dashnav">DASHBOARD</div>
       </div>

@@ -1,11 +1,31 @@
-.sidebar {
+/* .sidebar {
   background-color: #00110b;
   padding: 20px;
-  width: 200px;
   height: 100vh;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
+  width: 200px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.closed {
+  transform: translateX(-100%);
+  position: absolute;
+  z-index: 10;
+}
+
+.open {
+  transform: translateX(0);
+  position: absolute;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #8fffa0;
+  margin-bottom: 30px;
 }
 
 .link {
@@ -20,4 +40,103 @@
   font-weight: bold;
   border-left: 4px solid #8fffa0;
   padding-left: 8px;
+}
+
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  color: #8fffa0;
+  z-index: 20;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #00110b;
+  }
+} */
+
+
+.sidebar {
+  background-color: #00110b;
+  padding: 20px;
+  height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
+}
+
+/* Always visible on desktop */
+.desktop {
+  position: relative;
+  transform: translateX(0);
+}
+
+/* Mobile: closed sidebar */
+.closed {
+  transform: translateX(-100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* Mobile: opened sidebar */
+.open {
+  transform: translateX(0);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #8fffa0;
+  margin-bottom: 30px;
+}
+
+.link {
+  color: #8fffa0;
+  text-decoration: none;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.activeLink {
+  color: #fff;
+  font-weight: bold;
+  border-left: 4px solid #8fffa0;
+  padding-left: 8px;
+}
+
+/* Hamburger icon only on mobile */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  color: #8fffa0;
+  z-index: 200;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
 }

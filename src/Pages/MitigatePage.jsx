@@ -1,52 +1,118 @@
+// import React, { useState } from "react";
+// import "./MitigatePage.css";
+
+// export default function MitigatePage() {
+//   const [actions, setActions] = useState({
+//     blockedIP: false,
+//     isolatedEndpoint: false,
+//     notifiedSOC: false,
+//     updatedFirewall: false,
+//     markedSafe: false,
+//   });
+
+//   const handleChange = (key) => {
+//     setActions((prev) => ({ ...prev, [key]: !prev[key] }));
+//   };
+
+//   const handleSubmit = () => {
+//     console.log("Mitigation actions:", actions);
+//     alert("Mitigation actions saved.");
+//   };
+
+//   return (
+//     <div className="mitigate-container">
+//       <div className="mitigate-card">
+//         <h2 className="mitigate-title">Mitigate Alert #</h2>
+//         <div className="checkbox-group">
+//           <label>
+//             <input type="checkbox" onChange={() => handleChange("blockedIP")} />
+//             Blocked IP address
+//           </label>
+//           <label>
+//             <input type="checkbox" onChange={() => handleChange("isolatedEndpoint")} />
+//             Isolated Endpoint
+//           </label>
+//           <label>
+//             <input type="checkbox" onChange={() => handleChange("notifiedSOC")} />
+//             Notified SOC Team
+//           </label>
+//           <label>
+//             <input type="checkbox" onChange={() => handleChange("updatedFirewall")} />
+//             Updated firewall rules
+//           </label>
+//           <label>
+//             <input type="checkbox" onChange={() => handleChange("markedSafe")} />
+//             Marked as safe
+//           </label>
+//         </div>
+//         <button className="save-btn" onClick={handleSubmit}>Save</button>
+//       </div>
+//     </div>
+//   );
+// }
+
+
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import styles from "./MitigationPage.module.css";
+import "./MitigatePage.css";
 
-const options = [
-  "Blocked IP address",
-  "Isolated Endpoint",
-  "Notified SOC Team",
-  "Updated firewall rules",
-  "Marked as safe",
-];
+export default function MitigatePage() {
+  const [actions, setActions] = useState({
+    blockedIP: false,
+    isolatedEndpoint: false,
+    notifiedSOC: false,
+    updatedRules: false,
+    markedSafe: false,
+    extra: false,
+  });
 
-export default function MitigationPage() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [checkedItems, setCheckedItems] = useState([]);
-
-  const handleCheck = (option) => {
-    setCheckedItems((prev) =>
-      prev.includes(option)
-        ? prev.filter((item) => item !== option)
-        : [...prev, option]
-    );
+  const handleChange = (key) => {
+    setActions((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   const handleSubmit = () => {
-    // Simulate API call
-    console.log(`Mitigation steps for Alert ${id}:`, checkedItems);
-    navigate("/");
+    console.log("Mitigation actions:", actions);
+    alert("Mitigation actions saved.");
   };
 
   return (
-    <div className={styles.page}>
-      <h2>Mitigate Alert #{id}</h2>
-      <ul className={styles.list}>
-        {options.map((option, index) => (
-          <li key={index}>
-            <label>
-              <input
-                type="checkbox"
-                checked={checkedItems.includes(option)}
-                onChange={() => handleCheck(option)}
-              />
-              {option}
-            </label>
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleSubmit} className={styles.saveBtn}>Save</button>
+    <div className="mitigate-container">
+      <div className="mitigate-card">
+        <h2 className="mitigate-title">Mitigate</h2>
+
+        <div className="checkbox-row">
+          <label>
+            <input type="checkbox" onChange={() => handleChange("blockedIP")} />
+            Blocked IP
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handleChange("isolatedEndpoint")} />
+            Isolated Endpoint
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handleChange("notifiedSOC")} />
+            Notified SOC Team
+          </label>
+        </div>
+
+        <div className="checkbox-row">
+          <label>
+            <input type="checkbox" onChange={() => handleChange("updatedRules")} />
+            Updated Rules
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handleChange("markedSafe")} />
+            Marked Safe
+          </label>
+          <label>
+            <input type="checkbox" onChange={() => handleChange("extra")} />
+            Something Else
+          </label>
+        </div>
+
+        <div className="save-wrapper">
+          <button className="save-btn" onClick={handleSubmit}>Save</button>
+        </div>
+      </div>
     </div>
   );
 }
