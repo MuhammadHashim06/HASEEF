@@ -1,0 +1,25 @@
+.page {
+  padding: 24px;
+  color: #fff;
+  background: #00110b;
+  min-height: 100vh;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.list li {
+  margin: 10px 0;
+}
+
+.saveBtn {
+  background: #1a3d2f;
+  color: #8fffa0;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

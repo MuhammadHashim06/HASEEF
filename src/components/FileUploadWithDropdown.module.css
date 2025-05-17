@@ -1,0 +1,48 @@
+.card {
+  background: #00110b;
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 2px 16px rgba(0, 17, 11, 0.4);
+  margin: 12px;
+  flex: 1 1 100%;
+  min-width: 320px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.label {
+  color: #8fffa0;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #1a3d2f;
+  color: #8fffa0;
+  width: 100%;
+  font-size: 16px;
+}
+
+.dropArea {
+  background: #0a1e16;
+  border: 2px dashed #8fffa0;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+.fileName {
+  margin-top: 16px;
+  color: #8fffa0;
+}
