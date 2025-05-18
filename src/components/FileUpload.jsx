@@ -33,9 +33,14 @@ export default function FileUploadWithDropdown() {
         className={styles.select}
       >
         <option value="">Choose...</option>
-        <option value="logs">Log Files</option>
-        <option value="configs">Configuration Files</option>
-        <option value="reports">Reports</option>
+        
+
+
+
+        <option value="randomforesr">Credit Card Random Forest</option>
+        <option value="iee">Credit Card IEE</option>
+        <option value="network">Network Intrusion</option>
+        <option value="email">Email Phishing</option>
       </select>
 
       {/* Upload */}
@@ -63,7 +68,9 @@ export default function FileUploadWithDropdown() {
         <div className={styles.fileName}>
           <strong>Selected:</strong> {uploadedFile.name}
         </div>
+        
       )}
+      <button>Upload</button>
     </div>
   );
 }
