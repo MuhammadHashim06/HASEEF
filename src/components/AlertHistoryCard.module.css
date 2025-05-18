@@ -57,9 +57,9 @@
   color: #fff;
   box-shadow: 0 2px 16px rgba(0, 17, 11, 0.4);
   margin: 12px;
-  flex: 1 1 calc(50% - 42px);
-  min-width: 480px;
-  max-width: calc(50% - 42px);
+  flex: 1 1 calc(50% - 38px);
+  min-width: 180px;
+  max-width: calc(50% - 38px);
 }
 
 .title {
