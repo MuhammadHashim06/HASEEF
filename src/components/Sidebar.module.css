@@ -121,6 +121,7 @@
   font-weight: bold;
   border-left: 4px solid #8fffa0;
   padding-left: 8px;
+    margin-bottom: 16px;
 }
 
 /* Hamburger icon only on mobile */

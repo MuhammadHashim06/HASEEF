@@ -91,6 +91,14 @@ export default function Sidebar() {
         >
           File Upload
         </NavLink>
+        <NavLink
+          to="/history"
+          className={({ isActive }) =>
+            isActive ? styles.activeLink : styles.link
+          }
+        >
+          History
+        </NavLink>
       </div>
     </>
   );
