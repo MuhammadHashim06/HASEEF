@@ -70,7 +70,7 @@ export default function FileUploadWithDropdown() {
         </div>
         
       )}
-      <button>Upload</button>
+      <button className={styles.button} >Upload</button>
     </div>
   );
 }

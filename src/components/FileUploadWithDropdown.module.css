@@ -46,3 +46,13 @@
   margin-top: 16px;
   color: #8fffa0;
 }
+
+.button {
+  background: #1a3d2f;
+  color: #8fffa0;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
